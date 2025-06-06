@@ -14,11 +14,12 @@ interface Product {
 
 const ITEMS_PER_PAGE = 9;
 
-export default async function Page({
-  searchParams,
-}: {
-  searchParams?: { [key: string]: string | undefined };
-}) {
+export default async function Page(
+  props: {
+    searchParams?: Promise<{ [key: string]: string | undefined }>;
+  }
+) {
+  const searchParams = await props.searchParams;
   const page = Number(searchParams?.page) || 1;
   const from = (page - 1) * ITEMS_PER_PAGE;
   const to = from + ITEMS_PER_PAGE - 1;

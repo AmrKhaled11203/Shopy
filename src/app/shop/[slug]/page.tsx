@@ -7,17 +7,10 @@ import Image from "next/image";
 import YouMightAlsoLike from "../../../components/YouMightAlsoLike";
 import AddToCartButton from "@/components/AddToCartButton";
 
-type Params = Promise<{ slug: string }>;
-
-interface Props {
-  params: Params;
-  searchParams?: Record<string, string>;
-}
-
-export default async function ProductPage(props: {
+export default async function ProductPage(Props: {
   params: Promise<{ slug: string }>;
 }) {
-  const { slug } = await props.params;
+  const { slug } = await Props.params;
 
   const supabase = createServerComponentClient({ cookies });
 
